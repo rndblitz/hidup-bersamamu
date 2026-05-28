@@ -46,6 +46,21 @@ export default function InvitationPage() {
     );
   }
 
+  if (invitation.status !== "premium") {
+  return (
+    <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
+      <div className="text-center max-w-lg">
+        <h1 className="text-4xl font-bold mb-4">
+          Undangan Belum Aktif
+        </h1>
+        <p className="text-white/70">
+          Pemilik undangan belum mengaktifkan paket premium.
+        </p>
+      </div>
+    </main>
+  );
+}
+
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
       <div className="max-w-3xl mx-auto text-center">
