@@ -6,29 +6,42 @@ import { useParams } from "next/navigation";
 
 export default function InvitationPage() {
   const params = useParams();
+  const slug = String(params.slug);
 
   const [invitation, setInvitation] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadInvitation() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("invitations")
         .select("*")
-        .eq("slug", params.slug)
-        .single();
+        .eq("slug", slug)
+        .maybeSingle();
+
+      if (error) {
+        alert(error.message);
+      }
 
       setInvitation(data);
+      setLoading(false);
     }
 
     loadInvitation();
-  }, [params.slug]);
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Loading...</h1>
+      </main>
+    );
+  }
 
   if (!invitation) {
     return (
       <main className="min-h-screen bg-black text-white flex items-center justify-center">
-        <h1 className="text-4xl font-bold">
-          Loading...
-        </h1>
+        <h1 className="text-4xl font-bold">Undangan tidak ditemukan</h1>
       </main>
     );
   }
