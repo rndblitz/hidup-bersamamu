@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hidup Bersamamu Ready Kit
 
-## Getting Started
+Paket source code siap pakai untuk platform undangan digital freemium.
 
-First, run the development server:
+## Fitur
+
+- Landing page
+- Register member
+- Login member
+- Dashboard member
+- Create invitation
+- Edit invitation
+- Status `free` / `premium`
+- Public link `/u/[slug]`
+- Premium lock
+- 4 tema: `elegant`, `floral`, `islamic`, `luxury`
+- RSVP dan ucapan tamu
+- Supabase database + auth
+- Siap deploy ke Vercel
+
+## Setup singkat
+
+1. Copy file `.env.example` menjadi `.env.local`
+2. Isi:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_xxxxx
+```
+
+3. Masuk Supabase → SQL Editor → jalankan file:
+
+```text
+supabase/schema.sql
+```
+
+4. Install dependency:
+
+```bash
+npm install
+```
+
+5. Jalankan local:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Buka:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy ke Vercel
 
-## Learn More
+1. Push ke GitHub
+2. Import project ke Vercel
+3. Tambahkan Environment Variables di Vercel:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Redeploy
 
-To learn more about Next.js, take a look at the following resources:
+## Cara pakai
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Daftar member di `/register`
+- Login di `/login`
+- Buat undangan di `/dashboard/create`
+- Edit status undangan menjadi `premium` di halaman edit atau Supabase
+- Buka public link `/u/slug-undangan`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Catatan
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Paket ini tidak menyertakan `node_modules` dan `.env.local` agar aman.
